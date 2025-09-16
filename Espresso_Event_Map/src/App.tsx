@@ -56,7 +56,7 @@ function App() {
   return (
     <MainLayout>
       {/* Filters */}
-  <div id="event-filters-section" className="p-2 sm:p-4 bg-espresso-background mt-20 sm:mt-24">
+  <div id="event-filters-section" className="p-2 sm:p-4 bg-espresso-background mt-24 sm:mt-28 pt-24 z-20">
         <EventFilters />
       </div>
 
@@ -66,7 +66,7 @@ function App() {
           <EventListView />
         ) : (
           <div className="flex-1 p-2 sm:p-4">
-            <div className="w-full h-full min-h-[300px] sm:min-h-[600px]">
+            <div className="w-full h-full min-h-[50vh] sm:min-h-[600px]">
               <EventMap />
             </div>
           </div>

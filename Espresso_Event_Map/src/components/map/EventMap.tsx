@@ -1,4 +1,5 @@
 import { MapContainer, TileLayer } from 'react-leaflet'
+import { useEffect } from 'react'
 import L from 'leaflet'
 import { EventMarker } from './EventMarker'
 import { MapControls } from './MapControls'
@@ -18,13 +19,37 @@ L.Icon.Default.mergeOptions({
 })
 
 export function EventMap() {
-  const { mapMode } = useEventStore()
-  const { filteredEvents, hasResults } = useFilteredEvents()
   const {
     mapRef,
     mapState,
     handleEventSelect
   } = useMapInteractions()
+
+  // Force Leaflet to resize after mount with a delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const leafletMap = mapRef?.current as any
+      if (leafletMap && typeof leafletMap.invalidateSize === 'function') {
+        leafletMap.invalidateSize()
+      }
+    }, 400)
+    return () => clearTimeout(timer)
+  }, [mapRef])
+  // ...existing code...
+
+  useEffect(() => {
+    const handleResize = () => {
+      const leafletMap = mapRef?.current as any
+      if (leafletMap && typeof leafletMap.invalidateSize === 'function') {
+        leafletMap.invalidateSize()
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    handleResize()
+    return () => window.removeEventListener('resize', handleResize)
+  }, [mapRef])
+  const { mapMode } = useEventStore()
+  const { filteredEvents, hasResults } = useFilteredEvents()
   
   // Removed unused selectedEvent
 
@@ -37,11 +62,12 @@ export function EventMap() {
     dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
   }
   return (
-  <div className="relative w-full h-full espresso-map-container mt-20 sm:mt-0">
+  <div className="relative w-full h-[50vh] sm:h-[600px] z-10 espresso-map-container sm:mt-0">
       <MapContainer
         center={[mapState.center.lat, mapState.center.lng]}
         zoom={mapState.zoom}
         className="w-full h-full"
+        style={{ height: '100%' }}
         zoomControl={false}
         whenReady={() => {
           // Map is ready, ref can be set if needed
