@@ -44,7 +44,11 @@ export const sampleEvents: EspressoEvent[] = [
     status: 'past',
     external_link_url: 'https://espresso.systems/blog/consensus-2024-recap',
     thumbnail_url: '/images/consensus-2024.jpg'
-  },c: '2024-11-12T10:00:00Z',
+  },
+  {
+    id: 'evt-006',
+    name: 'Singapore Fintech Festival 2024',
+    datetime_utc: '2024-11-12T10:00:00Z',
     city: 'Singapore',
     country: 'Singapore',
     latitude: 1.3521,

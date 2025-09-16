@@ -1,4 +1,4 @@
-import React from 'react'
+// ...existing code...
 import { EventStatusFilter } from './EventStatusFilter'
 import { EventTypeFilter } from './EventTypeFilter' 
 import { RegionFilter } from './RegionFilter'

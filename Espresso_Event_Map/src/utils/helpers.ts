@@ -1,4 +1,4 @@
-import { EspressoEvent, EventFilters, EventStatus, EventType } from '@/types/event'
+import { EspressoEvent, EventFilters } from '@/types/event'
 import { format, parseISO, isAfter, isBefore } from 'date-fns'
 
 /**
@@ -73,7 +73,7 @@ export function getEventRegion(event: EspressoEvent): string {
  * Sorts events by date (upcoming first, then past in reverse chronological order)
  */
 export function sortEventsByDate(events: EspressoEvent[]): EspressoEvent[] {
-  const now = new Date()
+  // ...existing code...
   
   const upcoming = events
     .filter(event => event.status === 'upcoming')

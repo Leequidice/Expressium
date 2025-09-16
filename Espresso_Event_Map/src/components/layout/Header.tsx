@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { Map, List, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { ToggleSwitch } from '@/components/ui/ToggleSwitch'
@@ -7,9 +7,9 @@ import { useEventStore } from '@/context/EventDataContext'
 import { useMapInteractions } from '@/hooks/useMapInteractions'
 
 export function Header() {
-  const [scrolled, setScrolled] = React.useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 0);
     };
@@ -51,7 +51,7 @@ export function Header() {
           <SearchBar />
           
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             onClick={handleClearFilters}
             className="flex items-center gap-2"

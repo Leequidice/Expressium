@@ -1,4 +1,4 @@
-import React from 'react'
+// ...existing code...
 import { useEventStore } from '@/context/EventDataContext'
 import { ZoomIn, ZoomOut, Maximize2, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
@@ -6,7 +6,7 @@ import { useMapInteractions } from '@/hooks/useMapInteractions'
 
 export function MapControls() {
   const { mapMode, setMapMode } = useEventStore()
-  const { mapState, setMapRef, fitMapToEvents, resetMapView } = useMapInteractions()
+  const { fitMapToEvents, resetMapView } = useMapInteractions()
 
   const handleZoomIn = () => {
     // Zoom in via DOM event on map (handled in EventMap whenCreated listener)

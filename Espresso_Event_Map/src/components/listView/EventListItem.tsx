@@ -1,6 +1,6 @@
-import React from 'react'
+// ...existing code...
 import { EspressoEvent } from '@/types/event'
-import { formatEventDate, formatEventDateShort } from '@/utils/helpers'
+import { formatEventDate } from '@/utils/helpers'
 import { Calendar, MapPin, ExternalLink } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { clsx } from 'clsx'
@@ -115,7 +115,7 @@ export function EventListItem({ event, isSelected, onClick, tileColor = 'azure' 
       {event.external_link_url ? (
         <div className="flex justify-end">
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             onClick={(e) => {
               e.stopPropagation()

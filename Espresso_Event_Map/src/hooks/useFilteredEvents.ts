@@ -9,7 +9,7 @@ export function useFilteredEvents() {
   const { 
     events, 
     filters, 
-    filteredEvents,
+  // ...existing code...
     setFilteredEvents 
   } = useEventStore()
 

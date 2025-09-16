@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { EventListItem } from './EventListItem'
 import { useFilteredEvents } from '@/hooks/useFilteredEvents'
 import { useMapInteractions } from '@/hooks/useMapInteractions'
 import { useEventStore } from '@/context/EventDataContext'
 import { sortEventsByDate } from '@/utils/helpers'
-import { ChevronDown, Calendar, MapPin } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import { Dropdown } from '@/components/ui/Dropdown'
 
 type SortOption = 'date' | 'location' | 'name' | 'type'
@@ -19,7 +19,7 @@ const sortOptions = [
 export function EventListView() {
   const [filtersOutOfView, setFiltersOutOfView] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const filtersEl = document.getElementById('event-filters-section');
     if (!filtersEl) return;
     const observer = new window.IntersectionObserver(

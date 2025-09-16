@@ -1,4 +1,4 @@
-import React from 'react'
+// ...existing code...
 import { Dropdown } from '@/components/ui/Dropdown'
 import { useEventStore } from '@/context/EventDataContext'
 import { EventType } from '@/types/event'

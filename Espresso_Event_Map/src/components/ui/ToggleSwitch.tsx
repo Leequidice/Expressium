@@ -1,4 +1,4 @@
-import React from 'react'
+// ...existing code...
 import { clsx } from 'clsx'
 
 interface ToggleSwitchProps {

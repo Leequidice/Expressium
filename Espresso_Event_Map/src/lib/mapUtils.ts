@@ -113,7 +113,7 @@ export function isPointInViewport(map: any, point: LatLng): boolean {
 export function createClusterIcon(
   cluster: any,
   upcomingCount: number,
-  pastCount: number
+  // ...existing code...
 ): L.DivIcon {
   const totalCount = cluster.getChildCount()
   const size = Math.min(40 + totalCount * 2, 80)

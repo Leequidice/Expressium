@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { EspressoEvent, EventFilters, MapState, LatLng } from '@/types/event'
+import { EspressoEvent, EventFilters, MapState } from '@/types/event'
 
 interface EventStore {
   mapMode: 'light' | 'dark'
@@ -28,7 +28,7 @@ interface EventStore {
   toggleView: () => void
 }
 
-export const useEventStore = create<EventStore>((set, get) => ({
+export const useEventStore = create<EventStore>((set) => ({
   mapMode: 'dark',
   setMapMode: (mode) => set({ mapMode: mode }),
   // Initial state

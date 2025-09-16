@@ -1,4 +1,4 @@
-import React from 'react'
+// ...existing code...
 import { Popup } from 'react-leaflet'
 import { EspressoEvent } from '@/types/event'
 import { formatEventDate } from '@/utils/helpers'
@@ -10,7 +10,7 @@ interface MapPopupProps {
   onClose: () => void
 }
 
-export function MapPopup({ event, onClose }: MapPopupProps) {
+export function MapPopup({ event }: Omit<MapPopupProps, 'onClose'>) {
   const getEventTypeColor = (type: string) => {
     const colors = {
       conference: 'bg-blue-100 text-blue-800',
@@ -30,7 +30,7 @@ export function MapPopup({ event, onClose }: MapPopupProps) {
       position={[event.latitude, event.longitude]}
       closeButton={true}
       closeOnClick={false}
-      onClose={onClose}
+  // ...existing code...
       className="event-popup"
       minWidth={320}
       maxWidth={400}

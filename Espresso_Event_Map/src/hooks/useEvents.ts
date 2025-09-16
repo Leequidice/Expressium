@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { EspressoEvent } from '@/types/event'
 import { apiClient } from '@/lib/apiClient'
 import { useEventStore } from '@/context/EventDataContext'

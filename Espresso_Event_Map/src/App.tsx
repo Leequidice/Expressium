@@ -1,4 +1,4 @@
-import React from 'react'
+// ...existing code...
 import { MainLayout } from '@/components/layout/MainLayout'
 import { EventFilters } from '@/components/filters/EventFilters'
 import { EventMap } from '@/components/map/EventMap'
