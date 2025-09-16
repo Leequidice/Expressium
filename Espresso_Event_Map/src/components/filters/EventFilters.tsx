@@ -8,7 +8,7 @@ export function EventFilters() {
   const { eventCounts, eventsByRegion } = useFilteredEvents()
 
   return (
-    <div className="flex flex-wrap items-center gap-4 p-4 bg-white rounded-lg shadow-sm border border-gray-200">
+    <div className="flex flex-col sm:flex-row flex-wrap items-center gap-2 sm:gap-4 p-2 sm:p-4 bg-white rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center gap-2">
         <span className="text-sm font-medium text-espresso-secondary">Filter by:</span>
       </div>

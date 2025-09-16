@@ -56,17 +56,17 @@ function App() {
   return (
     <MainLayout>
       {/* Filters */}
-      <div className="p-4 bg-espresso-background mt-20">
+      <div id="event-filters-section" className="p-2 sm:p-4 bg-espresso-background mt-16 sm:mt-20">
         <EventFilters />
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex">
+      <div className="flex-1 flex flex-col sm:flex-row">
         {mapState.isListView ? (
           <EventListView />
         ) : (
-          <div className="flex-1 p-4">
-            <div className="w-full h-full min-h-[600px]">
+          <div className="flex-1 p-2 sm:p-4">
+            <div className="w-full h-full min-h-[300px] sm:min-h-[600px]">
               <EventMap />
             </div>
           </div>

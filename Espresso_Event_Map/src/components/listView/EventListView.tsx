@@ -17,6 +17,20 @@ const sortOptions = [
 ]
 
 export function EventListView() {
+  const [filtersOutOfView, setFiltersOutOfView] = useState(false);
+
+  React.useEffect(() => {
+    const filtersEl = document.getElementById('event-filters-section');
+    if (!filtersEl) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        setFiltersOutOfView(!entry.isIntersecting);
+      },
+      { root: null, threshold: 0 }
+    );
+    observer.observe(filtersEl);
+    return () => observer.disconnect();
+  }, []);
   const { filteredEvents, eventCounts, hasResults } = useFilteredEvents()
   const { handleEventSelect } = useMapInteractions()
   const { mapState } = useEventStore()
@@ -111,12 +125,13 @@ export function EventListView() {
 
       {/* Events List */}
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
-        {sortedEvents.map((event) => (
+        {sortedEvents.map((event, idx) => (
           <EventListItem
             key={event.id}
             event={event}
             isSelected={mapState.selectedEventId === event.id}
             onClick={handleEventSelect}
+            tileColor={(!filtersOutOfView && idx < 3) ? 'cookie' : 'azure'}
           />
         ))}
       </div>

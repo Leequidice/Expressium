@@ -9,9 +9,10 @@ interface EventListItemProps {
   event: EspressoEvent
   isSelected: boolean
   onClick: (event: EspressoEvent) => void
+    tileColor?: 'cookie' | 'azure'
 }
 
-export function EventListItem({ event, isSelected, onClick }: EventListItemProps) {
+export function EventListItem({ event, isSelected, onClick, tileColor = 'azure' }: EventListItemProps) {
   const getEventTypeColor = (type: string) => {
     const colors = {
       conference: 'bg-blue-100 text-blue-800 border-blue-200',
@@ -26,16 +27,18 @@ export function EventListItem({ event, isSelected, onClick }: EventListItemProps
     return status === 'upcoming' ? 'Register' : 'Read Recap'
   }
 
+  const bgColor = tileColor === 'cookie' ? '#E7C8A0' : '#C7E6F9';
   return (
     <div 
       className={clsx(
         'p-4 rounded-lg border cursor-pointer transition-all duration-200',
         'hover:shadow-md hover:border-espresso-primary/30',
         isSelected 
-          ? 'border-espresso-primary bg-espresso-primary/5 shadow-md' 
-          : 'border-gray-200 bg-white',
+          ? 'border-espresso-primary shadow-md'
+          : 'border-gray-200',
         event.status === 'past' && 'opacity-75'
       )}
+      style={{ backgroundColor: bgColor }}
       onClick={() => onClick(event)}
     >
       <div className="flex items-start justify-between">
