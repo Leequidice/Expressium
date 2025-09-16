@@ -84,17 +84,17 @@ export function EventListItem({ event, isSelected, onClick, tileColor = 'azure' 
 
           {/* Event Details */}
           <div className="space-y-2 mb-3">
-            <div className="flex items-center gap-2 text-sm text-espresso-secondary">
+            <div className="flex items-center gap-2 event-list-date">
               <Calendar className="h-4 w-4" />
               <span>{formatEventDate(event.datetime_utc, true)}</span>
             </div>
             
-            <div className="flex items-start gap-2 text-sm text-espresso-secondary">
+            <div className="flex items-start gap-2 event-list-venue">
               <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
               <div>
                 <div>{event.city}, {event.country}</div>
                 {event.venue_address && (
-                  <div className="text-xs text-espresso-neutral mt-0.5">
+                  <div className="text-xs" style={{ color: '#555', marginTop: '0.15em' }}>
                     {event.venue_address}
                   </div>
                 )}
@@ -111,8 +111,8 @@ export function EventListItem({ event, isSelected, onClick, tileColor = 'azure' 
         </div>
       </div>
 
-      {/* Action Button */}
-      {event.external_link_url && (
+      {/* Action Button or fallback message */}
+      {event.external_link_url ? (
         <div className="flex justify-end">
           <Button
             variant="outline"
@@ -126,6 +126,10 @@ export function EventListItem({ event, isSelected, onClick, tileColor = 'azure' 
             <ExternalLink className="mr-1 h-3 w-3" />
             {getActionButtonText(event.status)}
           </Button>
+        </div>
+      ) : (
+        <div className="flex justify-end">
+          <span className="text-xs text-espresso-neutral italic">Link not available</span>
         </div>
       )}
     </div>
