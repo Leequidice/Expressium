@@ -55,9 +55,7 @@ export function Footer() {
               </a>
             </div>
           </div>
-          <div className="text-espresso-neutral">
-            Built with OpenStreetMap • Powered by Leaflet
-          </div>
+          {/* Removed OpenStreetMap/Leaflet attribution */}
         </div>
       </footer>
     </>

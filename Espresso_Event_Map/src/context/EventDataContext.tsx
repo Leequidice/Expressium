@@ -15,6 +15,8 @@ interface EventStore {
   
   // Map state
   mapState: MapState
+  initialMapCenter: { lat: number, lng: number }
+  initialMapZoom: number
   
   // Actions
   setEvents: (events: EspressoEvent[]) => void
@@ -36,14 +38,17 @@ export const useEventStore = create<EventStore>((set) => ({
   filteredEvents: [],
   loading: false,
   error: null,
-  
+
   filters: {
     status: 'all',
     type: 'all',
     region: 'all',
     searchQuery: ''
   },
-  
+
+  initialMapCenter: { lat: 20.0, lng: 0.0 },
+  initialMapZoom: 2,
+
   mapState: {
     center: { lat: 20.0, lng: 0.0 },
     zoom: 2,

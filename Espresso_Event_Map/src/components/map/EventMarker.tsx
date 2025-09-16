@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Marker, Popup, useMap } from 'react-leaflet'
+import { useEventStore } from '@/context/EventDataContext'
 import L from 'leaflet'
 import { EspressoEvent } from '@/types/event'
 import { markerConfig } from '../../../config/mapConfig'
@@ -74,6 +75,15 @@ export function EventMarker({
     }
   }
 
+  // Initial map center and zoom (should match MapContainer defaults)
+  // Use initial map center/zoom from context
+  const { initialMapCenter, initialMapZoom } = useEventStore()
+
+  const handleResetZoom = () => {
+    map.flyTo([initialMapCenter.lat, initialMapCenter.lng], initialMapZoom, { animate: true, duration: 0.7 })
+    markerRef.current?.closePopup()
+  }
+
   return (
     <Marker
       ref={markerRef}
@@ -118,6 +128,13 @@ export function EventMarker({
           {event.description_short && (
             <p className="event-popup-description mb-2">{event.description_short}</p>
           )}
+          <button
+            className="mt-2 px-3 py-1 rounded bg-espresso-primary text-white text-xs hover:bg-espresso-secondary transition"
+            onClick={handleResetZoom}
+            type="button"
+          >
+            Reset Zoom
+          </button>
         </div>
       </Popup>
     </Marker>
