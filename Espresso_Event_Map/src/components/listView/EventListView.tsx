@@ -17,19 +17,12 @@ const sortOptions = [
 ]
 
 export function EventListView() {
-  const [filtersOutOfView, setFiltersOutOfView] = useState(false);
+  // ...existing code...
 
   useEffect(() => {
     const filtersEl = document.getElementById('event-filters-section');
     if (!filtersEl) return;
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        setFiltersOutOfView(!entry.isIntersecting);
-      },
-      { root: null, threshold: 0 }
-    );
-    observer.observe(filtersEl);
-    return () => observer.disconnect();
+    // ...existing code...
   }, []);
   const { filteredEvents, eventCounts, hasResults } = useFilteredEvents()
   const { handleEventSelect } = useMapInteractions()
@@ -84,7 +77,7 @@ export function EventListView() {
   }
 
   return (
-    <div className="flex flex-col h-full event-list-gradient">
+  <div className="flex flex-col h-full event-list-gradient mb-24 sm:mb-0">
       {/* List Header */}
       <div className="flex items-center justify-between p-4 bg-white border-b border-gray-200">
         <div className="flex items-center gap-4">
@@ -124,16 +117,16 @@ export function EventListView() {
       </div>
 
       {/* Events List */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-3">
-        {sortedEvents.map((event, idx) => (
-          <EventListItem
-            key={event.id}
-            event={event}
-            isSelected={mapState.selectedEventId === event.id}
-            onClick={handleEventSelect}
-            tileColor={(!filtersOutOfView && idx < 3) ? 'cookie' : 'azure'}
-          />
-        ))}
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 pb-16">
+          {sortedEvents.map((event) => (
+            <EventListItem
+              key={event.id}
+              event={event}
+              isSelected={mapState.selectedEventId === event.id}
+              onClick={handleEventSelect}
+              tileColor="azure"
+            />
+          ))}
       </div>
     </div>
   )

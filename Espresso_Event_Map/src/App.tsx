@@ -56,7 +56,7 @@ function App() {
   return (
     <MainLayout>
       {/* Filters */}
-      <div id="event-filters-section" className="p-2 sm:p-4 bg-espresso-background mt-16 sm:mt-20">
+  <div id="event-filters-section" className="p-2 sm:p-4 bg-espresso-background mt-20 sm:mt-24">
         <EventFilters />
       </div>
 

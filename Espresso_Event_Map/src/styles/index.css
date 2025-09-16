@@ -1,7 +1,5 @@
 /* Gradient background for event list container: cookie to azure */
-.event-list-gradient {
-  background: linear-gradient(180deg, #E7C8A0 0%, #C7E6F9 100%);
-}
+/* .event-list-gradient removed: no gradient background */
 /* Add improved styles for event tile date and venue text */
 .event-list-date {
   font-size: 1rem;

@@ -37,7 +37,7 @@ export function EventMap() {
     dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
   }
   return (
-    <div className="relative w-full h-full espresso-map-container">
+  <div className="relative w-full h-full espresso-map-container mt-20 sm:mt-0">
       <MapContainer
         center={[mapState.center.lat, mapState.center.lng]}
         zoom={mapState.zoom}
