@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+@layer base {
+  /* Glow effect for map pins on hover and click */
+  .leaflet-marker-icon:hover {
+    box-shadow: 0 0 32px 12px #FFB347, 0 0 24px 8px #FF6B35;
+    filter: drop-shadow(0 0 24px #FFB347) drop-shadow(0 0 12px #FF6B35);
+    transition: box-shadow 0.2s, filter 0.2s;
+    z-index: 1201;
+  }
+  .espresso-marker-selected {
+    box-shadow: 0 0 48px 18px #FFB347, 0 0 32px 12px #FF6B35;
+    filter: drop-shadow(0 0 32px #FFB347) drop-shadow(0 0 18px #FF6B35);
+    z-index: 1202;
+  }
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-espresso-background text-espresso-foreground;
+  }
+  
+  /* Leaflet overrides */
+  .leaflet-container {
+    @apply bg-espresso-background;
+  }
+  /* Ensure markers are interactive and above tiles */
+  .leaflet-pane.leaflet-marker-pane img.leaflet-marker-icon,
+  .leaflet-pane.leaflet-marker-pane .leaflet-marker-icon {
+    pointer-events: auto !important;
+    z-index: 1000 !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    .leaflet-pane.leaflet-marker-pane svg.leaflet-marker-icon {
+      pointer-events: auto !important;
+      z-index: 1000 !important;
+      transform-origin: center bottom !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+  }
+  .leaflet-pane.leaflet-overlay-pane,
+  .leaflet-pane.leaflet-shadow-pane,
+  .leaflet-pane.leaflet-tile-pane {
+    z-index: 200 !important;
+  }
+  
+  .leaflet-popup-content-wrapper {
+    @apply bg-white shadow-lg rounded-lg border-0;
+    padding: 0;
+  }
+  
+  .leaflet-popup-tip {
+    @apply bg-white;
+  }
+  
+  .leaflet-popup-close-button {
+    @apply text-espresso-neutral hover:text-espresso-primary;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 18px !important;
+    font-weight: bold;
+  }
+}
+
+/* Component styles */
+@layer components {
+  /* Shadow effect for upcoming markers */
+  .espresso-marker-upcoming {
+    position: relative;
+  }
+  .espresso-marker-upcoming::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8px;
+    width: 24px;
+    height: 10px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0) 100%);
+    filter: blur(2px);
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Steam effect for upcoming markers on hover */
+  .espresso-marker-upcoming {
+    position: relative;
+  }
+  .espresso-marker-upcoming.espresso-marker-hovered::before,
+  .espresso-marker-upcoming.espresso-marker-hovered::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 90%;
+    width: 6px;
+    height: 12px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 50% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0) 70%);
+    filter: blur(0.5px);
+    opacity: 0.9;
+    animation: steam-rise 1.6s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Glow effect for upcoming markers */
+  .espresso-marker-upcoming.espresso-marker-hovered {
+    filter: drop-shadow(0 0 10px rgba(255, 179, 71, 0.75)) drop-shadow(0 0 4px rgba(255, 179, 71, 0.6));
+  }
+  .espresso-marker-upcoming.espresso-marker-hovered::after {
+    left: calc(50% + 8px);
+    animation-delay: 0.5s;
+    height: 14px;
+  }
+
+  @keyframes steam-rise {
+    0% { transform: translate(-50%, 6px) scale(0.9); opacity: 0.0; }
+    20% { opacity: 0.6; }
+    60% { opacity: 0.9; }
+    100% { transform: translate(-50%, -18px) scale(1.1); opacity: 0; }
+  }
+  /* Custom marker cluster styles */
+  .custom-cluster-icon {
+    @apply transition-transform duration-200 hover:scale-110;
+  }
+  
+  /* Event popup styles */
+  .event-popup {
+    @apply p-0 m-0 rounded-lg overflow-hidden;
+  }
+  
+  .event-popup-content {
+    @apply p-4 space-y-3;
+  }
+  
+  .event-popup-header {
+    @apply font-semibold text-lg text-espresso-foreground;
+  }
+  
+  .event-popup-date {
+    @apply text-sm text-espresso-secondary;
+  }
+  
+  .event-popup-location {
+    @apply text-sm text-espresso-neutral;
+  }
+  
+  .event-popup-description {
+    @apply text-sm text-espresso-foreground leading-relaxed;
+  }
+  
+  .event-popup-type {
+    @apply inline-block px-2 py-1 text-xs font-medium rounded-full;
+  }
+  
+  .event-popup-type.conference {
+    @apply bg-blue-100 text-blue-800;
+  }
+  
+  .event-popup-type.hackathon {
+    @apply bg-purple-100 text-purple-800;
+  }
+  
+  .event-popup-type.meetup {
+    @apply bg-green-100 text-green-800;
+  }
+  
+  .event-popup-type.workshop {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+  
+  /* Filter and search components */
+  .filter-button {
+    @apply px-4 py-2 text-sm font-medium rounded-lg border transition-colors duration-200;
+  }
+  
+  .filter-button.active {
+    @apply bg-espresso-primary text-white border-espresso-primary;
+  }
+  
+  .filter-button.inactive {
+    @apply bg-white text-espresso-secondary border-gray-300 hover:bg-gray-50;
+  }
+  
+  /* Loading states */
+  .loading-spinner {
+    @apply inline-block w-4 h-4 border-2 border-espresso-primary border-t-transparent rounded-full animate-spin;
+  }
+  
+  /* Accessibility focus styles */
+  .focus-visible {
+    @apply outline-none ring-2 ring-espresso-primary ring-offset-2;
+  }
+}
+
+/* Utility styles */
+@layer utilities {
+  /* Animation utilities */
+  .animate-marker-bounce {
+    animation: marker-bounce 0.6s ease-in-out;
+  }
+  
+  .animate-marker-pulse {
+    animation: marker-pulse 0.3s ease-in-out;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slide-up 0.2s ease-out;
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marker-bounce,
+    .animate-marker-pulse,
+    .animate-fade-in,
+    .animate-slide-up {
+      animation: none;
+    }
+    
+    * {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}
