@@ -7,16 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        espresso: {
-          // Coffee / Cookie / Azure blend
-          primary: '#4B2E2B',
-          secondary: '#C69C6D',
-          accent: '#2F80ED',
-          neutral: '#8B8B8B',
-          muted: '#B0A79A',
-          background: '#FAF8F6',
-          foreground: '#1E1B19',
-        },
+        // Espresso Event Site Palette
+        'espresso': '#B86B2D',
+        'espresso-dark': '#8B4D1E',
+        'beige-bg': '#F6F2EE',
+        'surface': '#FFFFFF',
+        'text-primary': '#0B1720',
+        'text-muted': '#6B7276',
+        'accent-blue': '#2DA5E8',
+        'marker': '#C17D41',
+        'footer': '#081221',
+        'border': '#E9ECEF',
         // Semantic colors
         success: '#10B981',
         warning: '#F59E0B',
@@ -24,8 +25,8 @@ export default {
         info: '#3B82F6',
       },
       fontFamily: {
-        sans: ['var(--font-sans)'],
-        display: ['var(--font-sans)'],
+        sans: ['Inter', 'system-ui', 'ui-sans-serif', 'Arial', 'sans-serif'],
+        display: ['Inter', 'system-ui', 'ui-sans-serif', 'Arial', 'sans-serif'],
       },
       fontSize: {
         'xs': ['12px', { lineHeight: '16px' }],

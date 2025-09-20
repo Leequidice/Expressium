@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --espresso: #B86B2D;
+  --espresso-dark: #8B4D1E;
+  --beige-bg: #F6F2EE;
+  --surface: #FFFFFF;
+  --text-primary: #0B1720;
+  --text-muted: #6B7276;
+  --accent-blue: #2DA5E8;
+  --marker: #C17D41;
+  --footer: #081221;
+  --border: #E9ECEF;
+  --shadow: 0 4px 16px rgba(11, 23, 32, 0.06);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-beige-bg text-text-primary antialiased;
+  }
+  a { @apply underline-offset-4; }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface rounded-xl border border-border shadow-sm;
+    box-shadow: var(--shadow);
+  }
+  .marker-upcoming {
+    filter: drop-shadow(0 2px 6px rgba(193, 125, 65, 0.45));
+  }
+  .marker-featured {
+    filter: drop-shadow(0 2px 8px rgba(45, 165, 232, 0.55));
+  }
+}
+
+

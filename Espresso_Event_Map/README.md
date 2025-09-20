@@ -1,3 +1,36 @@
+## Getting Started
+
+### Prerequisites
+- Node.js 18+
+
+### Install
+```bash
+npm install
+```
+
+### Development
+```bash
+npm run dev
+```
+App will open on `http://localhost:3000`.
+
+### Build
+```bash
+npm run build
+npm run preview
+```
+Preview runs a static server to inspect the production build.
+
+## Project Structure (key files)
+- `src/App.jsx`: Main layout composing header, map, events, footer
+- `src/components/Header.jsx`: Top navigation with social links
+- `src/components/Map.jsx`: Placeholder map and markers
+- `src/components/EventCard.jsx`: Reusable card for events
+- `src/components/Footer.jsx`: Footer with links
+- `src/data/events.js`: Hardcoded dataset
+- `tailwind.config.js`: Extended espresso palette
+- `src/index.css`: Tailwind base/components/utilities and CSS variables
+
  Chrome, Firefox, Safari, Edge (last 2 versions)
 - **Mobile**: iOS Safari 15+, Chrome on Android 11+
 - **Progressive Enhancement**: Graceful degradation for older browsers
